@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  demo:
+    image: demos/whisper:latest
+    stdin_open: true
+    tty: true
+    ulimits:
+      memlock: -1 # set upper limit for how much memory is locked for the container (-1 means lock as much as the container uses)
+    ports:
+      - 8080:8080
+    volumes:
+      - /mnt/d/projects/demos/whisper-demo:/workspace
+    deploy:
+          resources:
+            reservations:
+              devices:
+                - driver: nvidia
+                  count: 1
+                  capabilities: [gpu]
+    command: python3 src/app.py
