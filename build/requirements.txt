@@ -1,2 +1,2 @@
 faster-whisper==0.10.0
-gradio==4.7.1
+gradio==3.50.2
